@@ -12,19 +12,20 @@ const cartSlice = createSlice({
     },
     increaseItemCount(state, action) {
       const selectedItem = state.cart.find(
-        (item) => item.id === action.payload.id
+        (item) => item.id === action.payload
       );
-      selectedItem.count = selectedItem.count + 1;
+      selectedItem.quantity = selectedItem.quantity + 1;
     },
     decreaseItemCount(state, action) {
       const selectedItem = state.cart.find(
-        (item) => item.id === action.payload.id
+        (item) => item.id === action.payload
       );
-      selectedItem.count = selectedItem.count - 1;
+
+      selectedItem.quantity = selectedItem.quantity - 1;
     },
     removeFromCart(state, action) {
       const selectedItem = state.cart.filter(
-        (item) => item.id !== action.payload.id
+        (item) => item.id !== action.payload
       );
       state.cart = selectedItem;
     },
@@ -44,3 +45,6 @@ export const {
 export default cartSlice.reducer;
 
 export const getCart = (state) => state.cart.cart;
+
+export const getItemCount = (id) => (state) =>
+  state.cart.cart.find((item) => item.id === id)?.quantity ?? 0;

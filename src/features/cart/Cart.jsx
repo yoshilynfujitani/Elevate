@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { getCart } from "./cartSlice";
 import CartItem from "./CartItem";
 import Home from "../../Pages/Home";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const cart = useSelector(getCart);
@@ -11,6 +12,7 @@ const Cart = () => {
       {cart.map((cartItem) => (
         <CartItem cartItemDetails={cartItem} key={cartItem.id} />
       ))}
+      <Link to="/order">Place Order</Link>
     </div>
   );
 };
