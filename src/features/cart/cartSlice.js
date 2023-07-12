@@ -21,7 +21,9 @@ const cartSlice = createSlice({
         (item) => item.id === action.payload
       );
 
+
       selectedItem.quantity = selectedItem.quantity - 1;
+      if (selectedItem.quantity === 0) cartSlice.caseReducers.removeFromCart(state, action)
     },
     removeFromCart(state, action) {
       const selectedItem = state.cart.filter(
