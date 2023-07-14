@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getCart } from "../features/cart/cartSlice";
 import { useState } from "react";
+import { BsCartFill } from "react-icons/bs";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -12,8 +13,8 @@ const Navbar = () => {
 
       {/* Mobile */}
       <div className="container flex items-center ">
-        <div className="flex-grow text-center text-3xl font-bold">Elevate</div>
-        <div className="flex-none"><Link to="/cart">Cart({NoOfItems})</Link><button onClick={() => setIsOpen((prevState) => !prevState)}>Menu</button></div>
+        <div className="flex-grow text-center text-3xl font-bold pl-20">Elevate</div>
+        <div className="flex-none gap-2 flex "><Link to="/cart"><p className="flex items-center"><BsCartFill />({NoOfItems})</p></Link><button onClick={() => setIsOpen((prevState) => !prevState)}>Menu</button></div>
         {isOpen && (<div className="relative  right-12">
           <div className="absolute flex flex-col  bg-red-200 my-6 rounded-md">
             <Link to="/shop" onClick={() => setIsOpen((prevState) => !prevState)}><p className="text-right">Shop</p></Link>
@@ -24,7 +25,7 @@ const Navbar = () => {
 
       {/* Desktop */}
       <div className="hidden container lg:block">
-        <Link to="/cart">Cart({NoOfItems})</Link>
+        <Link to="/cart"><BsCartFill />({NoOfItems})</Link>
         <Link to="/shop">Shop</Link>
         <Link to="/pendingOrder">Orders</Link>
       </div>
